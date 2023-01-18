@@ -4,14 +4,15 @@
 
 
 from pathlib import Path
-
+import mysql.connector as mysql
+import mariadb
 # from tkinter import *
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
-
+from tkinter import messagebox as MessageBox
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"G:\build\assets\frame0")
+ASSETS_PATH = OUTPUT_PATH / Path(r"G:\Database project\build\build\assets\frame5")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -39,14 +40,22 @@ canvas.create_rectangle(
     0.0,
     0.0,
     1930.0,
+    298.0,
+    fill="#FCBBBB",
+    outline="")
+
+canvas.create_rectangle(
+    0.0,
+    121.0,
+    1930.0,
     1101.0,
     fill="#FDCBCB",
     outline="")
 
 canvas.create_rectangle(
-    36.0,
+    25.0,
     298.0,
-    1901.0,
+    1912.0,
     1079.0,
     fill="#FFFFFF",
     outline="")
@@ -55,32 +64,7 @@ canvas.create_text(
     84.0,
     177.0,
     anchor="nw",
-    text="Events",
-    fill="#FFFFFF",
-    font=("Inter", 36 * -1)
-)
-
-button_image_1 = PhotoImage(
-    file=relative_to_assets("button_1.png"))
-button_1 = Button(
-    image=button_image_1,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_1 clicked"),
-    relief="flat"
-)
-button_1.place(
-    x=1633.0,
-    y=954.0,
-    width=240.0,
-    height=82.0
-)
-
-canvas.create_text(
-    1673.0,
-    971.0,
-    anchor="nw",
-    text="Add New",
+    text="Sponsors",
     fill="#FFFFFF",
     font=("Inter", 36 * -1)
 )
@@ -89,7 +73,7 @@ canvas.create_text(
     110.0,
     361.0,
     anchor="nw",
-    text="Event Name",
+    text="Name",
     fill="#FCBBBB",
     font=("Inter", 36 * -1)
 )
@@ -118,7 +102,7 @@ canvas.create_text(
     110.0,
     504.0,
     anchor="nw",
-    text="Type ID",
+    text="Event ID",
     fill="#FCBBBB",
     font=("Inter", 36 * -1)
 )
@@ -144,10 +128,10 @@ entry_2.place(
 )
 
 canvas.create_text(
-    110.0,
-    664.0,
+    753.0,
+    361.0,
     anchor="nw",
-    text="Ticket Price",
+    text="Description",
     fill="#FCBBBB",
     font=("Inter", 36 * -1)
 )
@@ -155,8 +139,8 @@ canvas.create_text(
 entry_image_3 = PhotoImage(
     file=relative_to_assets("entry_3.png"))
 entry_bg_3 = canvas.create_image(
-    364.5,
-    749.5,
+    1281.5,
+    500.0,
     image=entry_image_3
 )
 entry_3 = Entry(
@@ -166,35 +150,6 @@ entry_3 = Entry(
     highlightthickness=0
 )
 entry_3.place(
-    x=117.0,
-    y=717.0,
-    width=495.0,
-    height=63.0
-)
-
-canvas.create_text(
-    753.0,
-    361.0,
-    anchor="nw",
-    text="Description",
-    fill="#FCBBBB",
-    font=("Inter", 36 * -1)
-)
-
-entry_image_4 = PhotoImage(
-    file=relative_to_assets("entry_4.png"))
-entry_bg_4 = canvas.create_image(
-    1281.5,
-    500.0,
-    image=entry_image_4
-)
-entry_4 = Entry(
-    bd=0,
-    bg="#FDCBCB",
-    fg="#000716",
-    highlightthickness=0
-)
-entry_4.place(
     x=770.0,
     y=412.0,
     width=1023.0,
@@ -202,44 +157,7 @@ entry_4.place(
 )
 
 canvas.create_text(
-    753.0,
-    636.0,
-    anchor="nw",
-    text="Address",
-    fill="#FCBBBB",
-    font=("Inter", 36 * -1)
-)
-
-entry_image_5 = PhotoImage(
-    file=relative_to_assets("entry_5.png"))
-entry_bg_5 = canvas.create_image(
-    1281.5,
-    775.0,
-    image=entry_image_5
-)
-entry_5 = Entry(
-    bd=0,
-    bg="#FDCBCB",
-    fg="#000716",
-    highlightthickness=0
-)
-entry_5.place(
-    x=770.0,
-    y=687.0,
-    width=1023.0,
-    height=174.0
-)
-
-canvas.create_rectangle(
-    0.0,
-    0.0,
-    1930.0,
-    121.0,
-    fill="#FCBBBB",
-    outline="")
-
-canvas.create_text(
-    0.0,
+    1.0,
     0.0,
     anchor="nw",
     text="Event Management",
@@ -247,19 +165,51 @@ canvas.create_text(
     font=("Inter", 48 * -1)
 )
 
+button_image_1 = PhotoImage(
+    file=relative_to_assets("button_1.png"))
+button_1 = Button(
+    image=button_image_1,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: print("button_1 clicked"),
+    relief="flat"
+)
+button_1.place(
+    x=1595.0,
+    y=177.0,
+    width=228.0,
+    height=82.0
+)
+
+
+def insert_sponsors():
+    Name = entry_1.get()
+    event_id = entry_2.get()
+    description = entry_3.get()
+    if (Name == "" or description == ""):
+        MessageBox.showinfo("insert Status", "All fields are required")
+    else:
+        con = mariadb.connect(host="localhost", user="root",
+                              password="", database="event_db")
+        custor = con.cursor()
+        custor.execute("insert into sponsors (Name,Description) values(" "'" + Name + "'," "\"" + description + "\""")")
+        custor.execute("commit")
+        MessageBox.showinfo("Success")
+        con.close()
+
 button_image_2 = PhotoImage(
     file=relative_to_assets("button_2.png"))
 button_2 = Button(
     image=button_image_2,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_2 clicked"),
+    command=insert_sponsors,
     relief="flat"
 )
 button_2.place(
-    x=378.0,
-    y=182.0,
-    width=228.0,
+    x=1583.0,
+    y=944.0,
+    width=240.0,
     height=82.0
 )
 window.resizable(False, False)

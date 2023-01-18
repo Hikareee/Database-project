@@ -11,7 +11,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"G:\Database project\build\assets\frame2")
+ASSETS_PATH = OUTPUT_PATH / Path(r"G:\Database project\build\build\assets\frame7")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -36,61 +36,20 @@ canvas = Canvas(
 
 canvas.place(x = 0, y = 0)
 canvas.create_rectangle(
-    10.0,
-    1.0,
+    0.0,
+    0.0,
     1930.0,
-    1081.0,
-    fill="#E2CBB6",
+    304.0,
+    fill="#FCBBBB",
     outline="")
 
 canvas.create_rectangle(
-    6.0,
-    162.0,
-    1926.0,
-    1079.0,
-    fill="#FFFFFF",
-    outline="")
-
-canvas.create_rectangle(
-    6.0,
-    1.0,
-    246.0,
-    1081.0,
+    0.0,
+    122.0,
+    1930.0,
+    1101.0,
     fill="#FDCBCB",
     outline="")
-
-canvas.create_rectangle(
-    10.0,
-    1.0,
-    1930.0,
-    164.0,
-    fill="#FDCBCB",
-    outline="")
-
-canvas.create_rectangle(
-    10.0,
-    162.0,
-    1930.0,
-    298.0,
-    fill="#FDCBCB",
-    outline="")
-
-canvas.create_rectangle(
-    6.0,
-    192.0,
-    386.0,
-    298.0,
-    fill="#000000",
-    outline="")
-
-canvas.create_text(
-    289.0,
-    206.0,
-    anchor="nw",
-    text="Booths",
-    fill="#FFFFFF",
-    font=("Inter", 36 * -1)
-)
 
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"))
@@ -102,19 +61,10 @@ button_1 = Button(
     relief="flat"
 )
 button_1.place(
-    x=438.0,
-    y=189.0,
-    width=240.0,
-    height=82.0
-)
-
-canvas.create_text(
-    478.0,
-    206.0,
-    anchor="nw",
-    text="Add New",
-    fill="#FFFFFF",
-    font=("Inter", 36 * -1)
+    x=362.0,
+    y=153.0,
+    width=228.0,
+    height=108.0
 )
 
 button_image_2 = PhotoImage(
@@ -127,19 +77,10 @@ button_2 = Button(
     relief="flat"
 )
 button_2.place(
-    x=995.0,
-    y=189.0,
-    width=240.0,
-    height=82.0
-)
-
-canvas.create_text(
-    1072.0,
-    206.0,
-    anchor="nw",
-    text="Edit",
-    fill="#FFFFFF",
-    font=("Inter", 36 * -1)
+    x=1032.0,
+    y=153.0,
+    width=234.0,
+    height=110.0
 )
 
 button_image_3 = PhotoImage(
@@ -152,51 +93,17 @@ button_3 = Button(
     relief="flat"
 )
 button_3.place(
-    x=714.0,
-    y=189.0,
-    width=240.0,
-    height=82.0
-)
-
-canvas.create_text(
-    781.0,
-    206.0,
-    anchor="nw",
-    text="Delete",
-    fill="#FFFFFF",
-    font=("Inter", 36 * -1)
-)
-
-canvas.create_rectangle(
-    6.0,
-    420.0,
-    386.0,
-    522.0,
-    fill="#000000",
-    outline="")
-
-canvas.create_rectangle(
-    6.0,
-    304.0,
-    386.0,
-    420.0,
-    fill="#000000",
-    outline="")
-
-canvas.create_text(
-    24.0,
-    59.0,
-    anchor="nw",
-    text="Event Management",
-    fill="#FFFFFF",
-    font=("Inter", 48 * -1)
+    x=692.0,
+    y=153.0,
+    width=228.0,
+    height=108.0
 )
 
 entry_image_1 = PhotoImage(
     file=relative_to_assets("entry_1.png"))
 entry_bg_1 = canvas.create_image(
-    1686.0,
-    233.0,
+    1698.0,
+    212.0,
     image=entry_image_1
 )
 entry_1 = Entry(
@@ -206,19 +113,68 @@ entry_1 = Entry(
     highlightthickness=0
 )
 entry_1.place(
-    x=1511.0,
-    y=199.0,
-    width=350.0,
+    x=1533.0,
+    y=178.0,
+    width=330.0,
     height=66.0
 )
 
 canvas.create_text(
-    1369.0,
-    206.0,
+    1240.0,
+    163.0,
     anchor="nw",
-    text="Search:",
+    text="Search",
     fill="#FFFFFF",
     font=("Inter", 36 * -1)
+)
+
+canvas.create_rectangle(
+    290.0,
+    304.0,
+    1908.0,
+    1084.0,
+    fill="#FFFFFF",
+    outline="")
+
+button_image_4 = PhotoImage(
+    file=relative_to_assets("button_4.png"))
+button_4 = Button(
+    image=button_image_4,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: print("button_4 clicked"),
+    relief="flat"
+)
+button_4.place(
+    x=25.0,
+    y=552.0,
+    width=240.0,
+    height=82.0
+)
+
+button_image_5 = PhotoImage(
+    file=relative_to_assets("button_5.png"))
+button_5 = Button(
+    image=button_image_5,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: print("button_5 clicked"),
+    relief="flat"
+)
+button_5.place(
+    x=25.0,
+    y=365.0,
+    width=240.0,
+    height=82.0
+)
+
+canvas.create_text(
+    1.0,
+    1.0,
+    anchor="nw",
+    text="Event Management",
+    fill="#FFFFFF",
+    font=("Inter", 48 * -1)
 )
 window.resizable(False, False)
 window.mainloop()

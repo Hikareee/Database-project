@@ -11,7 +11,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"G:\build\assets\frame1")
+ASSETS_PATH = OUTPUT_PATH / Path(r"G:\Database project\build\build\assets\frame8")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -39,62 +39,22 @@ canvas.create_rectangle(
     0.0,
     1.0,
     1930.0,
-    1102.0,
-    fill="#FDCBCB",
+    300.0,
+    fill="#FCBBBB",
     outline="")
 
-button_image_1 = PhotoImage(
-    file=relative_to_assets("button_1.png"))
-button_1 = Button(
-    image=button_image_1,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_1 clicked"),
-    relief="flat"
-)
-button_1.place(
-    x=362.0,
-    y=152.0,
-    width=228.0,
-    height=108.0
-)
-
-button_image_2 = PhotoImage(
-    file=relative_to_assets("button_2.png"))
-button_2 = Button(
-    image=button_image_2,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_2 clicked"),
-    relief="flat"
-)
-button_2.place(
-    x=1032.0,
-    y=152.0,
-    width=234.0,
-    height=110.0
-)
-
-button_image_3 = PhotoImage(
-    file=relative_to_assets("button_3.png"))
-button_3 = Button(
-    image=button_image_3,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_3 clicked"),
-    relief="flat"
-)
-button_3.place(
-    x=692.0,
-    y=152.0,
-    width=228.0,
-    height=108.0
-)
+canvas.create_rectangle(
+    0.0,
+    120.0,
+    1930.0,
+    1101.0,
+    fill="#FDCBCB",
+    outline="")
 
 entry_image_1 = PhotoImage(
     file=relative_to_assets("entry_1.png"))
 entry_bg_1 = canvas.create_image(
-    1673.0,
+    1698.0,
     211.0,
     image=entry_image_1
 )
@@ -105,7 +65,7 @@ entry_1 = Entry(
     highlightthickness=0
 )
 entry_1.place(
-    x=1508.0,
+    x=1533.0,
     y=177.0,
     width=330.0,
     height=66.0
@@ -121,20 +81,60 @@ canvas.create_text(
 )
 
 canvas.create_rectangle(
-    0.0,
-    1.0,
-    1930.0,
-    122.0,
-    fill="#FCBBBB",
-    outline="")
-
-canvas.create_rectangle(
     290.0,
-    299.0,
+    298.0,
     1908.0,
-    1079.0,
+    1078.0,
     fill="#FFFFFF",
     outline="")
+
+button_image_1 = PhotoImage(
+    file=relative_to_assets("button_1.png"))
+button_1 = Button(
+    image=button_image_1,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: print("button_1 clicked"),
+    relief="flat"
+)
+button_1.place(
+    x=362.0,
+    y=153.0,
+    width=228.0,
+    height=108.0
+)
+
+button_image_2 = PhotoImage(
+    file=relative_to_assets("button_2.png"))
+button_2 = Button(
+    image=button_image_2,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: print("button_2 clicked"),
+    relief="flat"
+)
+button_2.place(
+    x=30.0,
+    y=550.0,
+    width=240.0,
+    height=82.0
+)
+
+button_image_3 = PhotoImage(
+    file=relative_to_assets("button_3.png"))
+button_3 = Button(
+    image=button_image_3,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: print("button_3 clicked"),
+    relief="flat"
+)
+button_3.place(
+    x=30.0,
+    y=363.0,
+    width=240.0,
+    height=82.0
+)
 
 button_image_4 = PhotoImage(
     file=relative_to_assets("button_4.png"))
@@ -146,10 +146,10 @@ button_4 = Button(
     relief="flat"
 )
 button_4.place(
-    x=25.0,
-    y=738.0,
-    width=240.0,
-    height=82.0
+    x=1032.0,
+    y=153.0,
+    width=234.0,
+    height=110.0
 )
 
 button_image_5 = PhotoImage(
@@ -162,30 +162,14 @@ button_5 = Button(
     relief="flat"
 )
 button_5.place(
-    x=25.0,
-    y=551.0,
-    width=240.0,
-    height=82.0
-)
-
-button_image_6 = PhotoImage(
-    file=relative_to_assets("button_6.png"))
-button_6 = Button(
-    image=button_image_6,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_6 clicked"),
-    relief="flat"
-)
-button_6.place(
-    x=25.0,
-    y=364.0,
-    width=240.0,
-    height=82.0
+    x=692.0,
+    y=153.0,
+    width=228.0,
+    height=108.0
 )
 
 canvas.create_text(
-    0.0,
+    1.0,
     0.0,
     anchor="nw",
     text="Event Management",
