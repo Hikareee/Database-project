@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2023 at 04:26 AM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Jan 18, 2023 at 09:26 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,7 +39,11 @@ CREATE TABLE `booths` (
 --
 
 INSERT INTO `booths` (`id`, `booth_name`, `email`, `description`) VALUES
-(1, 'FigurStore', 'boothowner1@gmail.com', 'Cheap high quality figurines store ');
+(1, 'FigurStore', 'boothowner1@gmail.com', 'Cheap high quality figurines store '),
+(2, 'Kyoid ', 'HanselFaren21@gmail.com', 'Anime figures and merch sellers '),
+(3, 'SumiShopu', 'Sumishopu@gmail.com', 'Anime hobby store \r\n'),
+(4, 'IsekaiShirts ', 'isekaishirts@yahoo.co.id ', 'High quality anime shirts store that also sells keychains and totebags'),
+(5, 'Pins and figs', 'PinsNFigs', 'Store selling anime figures and pins');
 
 -- --------------------------------------------------------
 
@@ -78,6 +82,18 @@ CREATE TABLE `event_booths` (
   `booth_id` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `event_booths`
+--
+
+INSERT INTO `event_booths` (`id`, `event_id`, `booth_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 2, 3),
+(4, 1, 4),
+(5, 1, 4),
+(6, 2, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -89,6 +105,17 @@ CREATE TABLE `event_sponsors` (
   `event_id` int(10) DEFAULT NULL,
   `sponsor_id` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `event_sponsors`
+--
+
+INSERT INTO `event_sponsors` (`id`, `event_id`, `sponsor_id`) VALUES
+(1, 1, 4),
+(2, 1, 3),
+(3, 2, 1),
+(4, 2, 2),
+(5, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -123,6 +150,15 @@ CREATE TABLE `participants` (
   `phone` char(13) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `participants`
+--
+
+INSERT INTO `participants` (`id`, `user_id`, `name`, `email`, `phone`) VALUES
+(1, 1, 'George Washed', 'GeorgeWashedUSA@gmail.com', '0812223334455'),
+(2, 2, 'Margaret ', 'maragarara@yahoo.co.id', '081871828'),
+(4, 8, 'Dumbledore ', 'grandwizzard123@gmail.com', '08122776345');
+
 -- --------------------------------------------------------
 
 --
@@ -139,7 +175,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`) VALUES
-(1, 'Admin');
+(1, 'Admin'),
+(2, 'User');
 
 -- --------------------------------------------------------
 
@@ -156,6 +193,13 @@ CREATE TABLE `rundowns` (
   `location` longtext DEFAULT NULL,
   `description` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rundowns`
+--
+
+INSERT INTO `rundowns` (`id`, `event_id`, `start`, `end`, `title`, `location`, `description`) VALUES
+(1, 1, '13:00:00', '15:00:00', 'Costalk', 'Center event stage ', 'Costalk event that will teach people how to cosplay and extra acting tips');
 
 -- --------------------------------------------------------
 
@@ -174,22 +218,11 @@ CREATE TABLE `sponsors` (
 --
 
 INSERT INTO `sponsors` (`id`, `name`, `description`) VALUES
-(1, 'Crunchyroll', 'Anime streaming services');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `system_settings`
---
-
-CREATE TABLE `system_settings` (
-  `id` int(30) NOT NULL,
-  `name` text NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `contact` varchar(20) NOT NULL,
-  `cover_img` text NOT NULL,
-  `about_content` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(1, 'Crunchyroll', 'Anime streaming services'),
+(2, 'Totally a sponsor', 'Sells merch for weebs'),
+(3, 'Dancow', 'Powdered milk empire '),
+(4, 'Tehpoci', 'Tea seller'),
+(5, 'KopiKelupaan', 'Premium coffee seller');
 
 -- --------------------------------------------------------
 
@@ -202,8 +235,16 @@ CREATE TABLE `ticket` (
   `event_id` int(10) DEFAULT NULL,
   `book_code` varchar(255) DEFAULT NULL,
   `participant_id` int(10) DEFAULT NULL,
-  `status` enum('normal','VIP','VIP+') DEFAULT NULL
+  `ticket_type` enum('normal','VIP','VIP+') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ticket`
+--
+
+INSERT INTO `ticket` (`id`, `event_id`, `book_code`, `participant_id`, `ticket_type`) VALUES
+(1, 1, '13489283', 1, 'VIP+'),
+(2, 2, '122345592929', 2, 'normal');
 
 -- --------------------------------------------------------
 
@@ -226,7 +267,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `phone`, `email`, `username`, `password`) VALUES
-(1, 1, 'Administrator', '081234567890', 'adminemail123@gmail.com', 'admin', '0192023a7bbd73250516f069df18b500');
+(1, 1, 'Administrator', '081234567890', 'adminemail123@gmail.com', 'admin', '0192023a7bbd73250516f069df18b500'),
+(2, 2, 'Margaret', '081871828', 'maragarara@yahoo.co.id', 'margaret', '123mgret'),
+(3, 2, 'Porter', '081133485399', 'porterJR@gmail.com', 'Porter', 'Pororoport123'),
+(8, 2, 'Dumbledore ', '08122776345', 'grandwizzard123@gmail.com', 'Dumbledore', 'avadakedavra');
 
 --
 -- Indexes for dumped tables
@@ -294,12 +338,6 @@ ALTER TABLE `sponsors`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `system_settings`
---
-ALTER TABLE `system_settings`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `ticket`
 --
 ALTER TABLE `ticket`
@@ -322,7 +360,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `booths`
 --
 ALTER TABLE `booths`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -334,7 +372,13 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `event_booths`
 --
 ALTER TABLE `event_booths`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `event_sponsors`
+--
+ALTER TABLE `event_sponsors`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `event_types`
@@ -346,31 +390,25 @@ ALTER TABLE `event_types`
 -- AUTO_INCREMENT for table `participants`
 --
 ALTER TABLE `participants`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `rundowns`
 --
 ALTER TABLE `rundowns`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sponsors`
 --
 ALTER TABLE `sponsors`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `system_settings`
---
-ALTER TABLE `system_settings`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
